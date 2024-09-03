@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="header-content">
+    <div class="info">
+      <img src="../../../../../assets/lg.png" alt="">
+      <div class="text">
+        <h2 class="green">FATEC</h2>
+        <h2 class="brown">Shunji Nishimura</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="campo-cards">
+    <div *ngFor="let item of lista" class="card" (click)="selecionarEstufa(item.estufa)">
+      <h3>{{item.estufa}}</h3>
+      <div class="information">
+        <div class="linha" style="gap:2px">
+          <div class="group">
+            <img src="../../../assets/cloud.svg" alt="">
+            <p>{{item.temp}}ºc</p>
+          </div>
+          <div class="group">
+            <img src="../../../assets/clock.svg" alt="">
+            <p>{{item.horario}}</p>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="group">
+            <img src="../../../assets/water.svg" alt="">
+            <p>{{item.umidade}}%</p>
+          </div>
+          <div class="group" style="padding-left: 40px;">
+            <img src="../../../assets/pointer.svg" alt="">
+            <p>{{item.localizacao}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
