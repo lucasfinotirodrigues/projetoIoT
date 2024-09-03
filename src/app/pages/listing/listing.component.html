@@ -10,30 +10,92 @@
   </div>
 
   <div class="campo-cards">
-    <div *ngFor="let item of lista" class="card" (click)="selecionarEstufa(item.estufa)">
-      <h3>{{item.estufa}}</h3>
+    <div  class="card">
+      <h3>item.estufa</h3>
       <div class="information">
         <div class="linha" style="gap:2px">
           <div class="group">
             <img src="../../../assets/cloud.svg" alt="">
-            <p>{{item.temp}}ºc</p>
+            <p>item.tempºc</p>
           </div>
           <div class="group">
             <img src="../../../assets/clock.svg" alt="">
-            <p>{{item.horario}}</p>
+            <p>item.horario</p>
           </div>
         </div>
         <div class="linha">
           <div class="group">
             <img src="../../../assets/water.svg" alt="">
-            <p>{{item.umidade}}%</p>
+            <p>item.umidade%</p>
           </div>
           <div class="group" style="padding-left: 40px;">
             <img src="../../../assets/pointer.svg" alt="">
-            <p>{{item.localizacao}}</p>
+            <p>item.localizacao</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="channel-info">
+  <h2>Informações do Canal</h2>
+  <p><strong>ID:</strong> {{ channel?.id }}</p>
+  <p><strong>Nome:</strong> {{ channel?.name }}</p>
+  <p><strong>Latitude:</strong> {{ channel?.latitude }}</p>
+  <p><strong>Longitude:</strong> {{ channel?.longitude }}</p>
+  <p><strong>Campo 1:</strong> {{ channel?.field1 }}</p>
+  <p><strong>Campo 2:</strong> {{ channel?.field2 }}</p>
+  <p><strong>Criado em:</strong> {{ channel?.created_at | date: 'medium' }}</p>
+  <p><strong>Atualizado em:</strong> {{ channel?.updated_at | date: 'medium' }}</p>
+  <p><strong>Último ID de Entrada:</strong> {{ channel?.last_entry_id }}</p>
+</div>
+
+<div class="feeds-list">
+  <h2>Feeds</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Data de Criação</th>
+        <th>ID da Entrada</th>
+        <th>Campo 1 (Temperatura)</th>
+        <th>Campo 2 (Umidade)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feed of feeds">
+        <td>{{ feed.created_at | date: 'medium' }}</td>
+        <td>{{ feed.entry_id }}</td>
+        <td>{{ feed.field1 }}</td>
+        <td>{{ feed.field2 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="table">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Temperatura</th>
+        <th>Umidade</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>item.temp</td>
+        <td>item.umid</td>
+        <td>item.hora</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
