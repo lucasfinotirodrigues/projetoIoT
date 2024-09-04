@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListingComponent } from './pages/listing/listing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartComponent } from './pages/chart/chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChartComponent } from './pages/chart/chart.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

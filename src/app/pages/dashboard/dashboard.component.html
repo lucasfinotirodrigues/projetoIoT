@@ -1,47 +1,45 @@
-<app-chart></app-chart>
-
+<div echarts [options]="chartOption" id="chart" class="chart"></div>
 
 <div class="container" id="print-content">
     <div class="header-content">
         <div class="info">
             <img src="../../../../../assets/lg.png" alt="">
             <div class="text">
-            <h2 class="green">FATEC</h2>
-            <h2 class="brown">Shunji Nishimura</h2>
+                <h2 class="green">FATEC</h2>
+                <h2 class="brown">Shunji Nishimura</h2>
             </div>
         </div>
-   
     </div>
     <div class="header-content">
-      <div style="display: flex;flex-direction: column; gap:8px">
-        <h2 class="green">{{ channel?.name }}</h2>
-        <h3 class="green-a">{{ channel?.created_at | date: 'medium' }}</h3>
-      </div>
-      <div style="display: flex; gap: 8px">
-        <button style="display: flex;align-items: center; gap: 8px">
-          <img src="../../../assets/arrow-down.svg" alt="ícone download">
-          Exportar Planilha
-        </button>
-      </div>
+        <div style="display: flex;flex-direction: column; gap:8px">
+            <h2 class="green">{{ channel?.name }}</h2>
+            <h3 class="green-a">{{ channel?.created_at | date: 'medium' }}</h3>
+        </div>
+        <div style="display: flex; gap: 8px">
+            <button style="display: flex;align-items: center; gap: 8px">
+                <img src="../../../assets/arrow-down.svg" alt="ícone download">
+                Exportar Planilha
+            </button>
+        </div>
     </div>
     <div class="table-responsive">
         <div class="table">
             <table class="content-table">
-              <thead>
-                <tr>
-                  <th>{{ channel?.field1 }}</th>
-                  <th>{{ channel?.field2 }}</th>
-                  <th>Data e hora</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let feed of feeds">
-                  <td>{{ feed.field1 }}%</td>
-                  <td>{{ feed.field2 || 0 }}%</td>
-                  <td>{{ feed.created_at | date: 'medium' }}</td>
-                </tr>
-              </tbody>
+                <thead>
+                    <tr>
+                        <th>{{ channel?.field1 }}</th>
+                        <th>{{ channel?.field2 }}</th>
+                        <th>Data e hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let feed of feeds">
+                        <td>{{ feed.field1 }}%</td>
+                        <td>{{ feed.field2 || 0 }}%</td>
+                        <td>{{ feed.created_at | date: 'medium' }}</td>
+                    </tr>
+                </tbody>
             </table>
-          </div>
+        </div>
     </div>
 </div>
