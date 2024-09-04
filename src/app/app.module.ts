@@ -7,13 +7,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListingComponent } from './pages/listing/listing.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartComponent } from './pages/chart/chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DashboardComponent,
-    ListingComponent
+    ListingComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
