@@ -3,7 +3,6 @@
   -webkit-print-color-adjust: exact;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 100vw;
   gap: 48px;
 
@@ -52,7 +51,7 @@
       width: 180px;
       height: 40px;
       background: var(--color-primary);
-      border-radius: 10px;
+      border-radius: 5px;
       color: #fff;
       border: none;
       font-weight: 500;
@@ -60,7 +59,8 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #4A822A;
+        background-color: #4f892d;
+        transition: 0.3s;
       }
     }
   }
@@ -73,19 +73,7 @@
     flex-direction: column;
     gap: 24px;
 
-    .green {
-      color: var(--color-primary);
-      font-weight: 600;
-      font-size: 20px;
-
-    }
-    .green-a {
-      color: var(--color-primary);
-      font-weight: 500;
-      font-size: 16px;
-
-    }
-
+   
     table {
       border-collapse: collapse;
       width: 702px;
@@ -126,7 +114,6 @@
   flex-direction: row;
   justify-content: center;
   margin-bottom: 250px;
-  margin-left: 40px;
   overflow-x: auto;
 }
 
@@ -171,6 +158,19 @@ td {
   text-transform: initial;
 }
 
+
+.green {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 20px;
+
+}
+.green-a {
+  color: var(--color-secondary);
+  font-weight: 500;
+  font-size: 16px;
+
+}
 
 // Responsividade
 

@@ -7,34 +7,35 @@
             <h2 class="brown">Shunji Nishimura</h2>
             </div>
         </div>
-        <button>Exportar PDF</button>
-
-        <button>Exportar Planilha</button>
+   
+    </div>
+    <div class="header-content">
+      <div style="display: flex;flex-direction: column; gap:8px">
+        <h2 class="green">{{ channel?.name }}</h2>
+        <h3 class="green-a">{{ channel?.created_at | date: 'medium' }}</h3>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button style="display: flex;align-items: center; gap: 8px">
+          <img src="../../../assets/arrow-down.svg" alt="ícone download">
+          Exportar Planilha
+        </button>
+      </div>
     </div>
     <div class="table-responsive">
-
-      <!-- dashboard.component.html -->
-<div class="dashboard-container">
-  <h2>Detalhes da Estufa: {{ estufa }}</h2>
-  <!-- Aqui você pode adicionar mais detalhes conforme sua necessidade -->
-</div>
-
-      <h2 class="green">listaService.estufaSelecionada</h2>
-      <h3 class="green-a">20/05/2023</h3>
         <div class="table">
             <table class="content-table">
               <thead>
                 <tr>
-                  <th>Temperatura</th>
-                  <th>Umidade</th>
-                  <th>Hora</th>
+                  <th>{{ channel?.field1 }}</th>
+                  <th>{{ channel?.field2 }}</th>
+                  <th>Data e hora</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>item.temp</td>
-                  <td>item.umid</td>
-                  <td>item.hora</td>
+                <tr *ngFor="let feed of feeds">
+                  <td>{{ feed.field1 }}%</td>
+                  <td>{{ feed.field2 || 0 }}%</td>
+                  <td>{{ feed.created_at | date: 'medium' }}</td>
                 </tr>
               </tbody>
             </table>

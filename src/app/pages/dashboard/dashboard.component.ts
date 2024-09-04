@@ -1,7 +1,5 @@
-// dashboard.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,13 +7,25 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  estufa: string | null = '';
+  channel: any;
+  feeds: any[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.estufa = params['estufa'];
-    });
+    this.getAPI();
+  }
+
+  getAPI() {
+    this.apiService.getAPI().subscribe(
+      (data) => {
+        console.warn('Dados da API:', data);
+        this.channel = data.channel;
+        this.feeds = data.feeds;
+      },
+      (error) => {
+        console.error('Erro ao consumir a API:', error);
+      }
+    );
   }
 }
