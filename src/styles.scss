@@ -1,3 +1,6 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 // Resetando o CSS padrão
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -42,12 +45,6 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-// Estilizações padrão de todas as telas
-
-html, body {
-    overflow: hidden;
-   }
 
 *{
     font-family: 'Raleway', sans-serif;
