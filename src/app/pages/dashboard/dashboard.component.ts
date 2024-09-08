@@ -12,9 +12,9 @@ import { DatePipe } from '@angular/common';
 export class DashboardComponent implements OnInit {
   channel: any;
   feeds: any[] = [];
-  
   data: any;
   options: any;
+  viewMode: 'table' | 'chart' = 'table'; // Variável para controlar a visualização
 
   constructor(private apiService: ApiService, private datePipe: DatePipe) {}
 
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
           type: 'bar',
           label: 'Umidade',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: this.feeds.map(feed => feed.field2 ),
+          data: this.feeds.map(feed => feed.field2),
           borderColor: 'white',
           borderWidth: 2
         }
@@ -113,6 +113,11 @@ export class DashboardComponent implements OnInit {
     downloadLink.href = URL.createObjectURL(data);
     downloadLink.download = fileName;
     downloadLink.click();
+  }
+
+  // Método para alternar a visualização
+  toggleView(view: 'table' | 'chart') {
+    this.viewMode = view;
   }
 }
 
