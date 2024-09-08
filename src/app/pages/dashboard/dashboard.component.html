@@ -15,10 +15,15 @@
           <h3 class="green-a">{{ channel?.created_at | date: 'medium' }}</h3>
       </div>
       <div style="display: flex; gap: 8px">
-          <button style="display: flex;align-items: center; gap: 8px" (click)="exportToExcel()">
+          <button style="display: flex;align-items: center; gap: 8px"  *ngIf="viewMode === 'table'" (click)="exportToExcel()">
               <img src="../../../assets/arrow-down.svg" alt="ícone download">
               Exportar Planilha
           </button>
+          <button style="display: flex;align-items: center; gap: 8px"  *ngIf="viewMode === 'chart'" (click)="downloadChartAsPng()">
+            <img src="../../../assets/arrow-down.svg" alt="ícone download">
+            Exportar Gráfico
+          </button>
+
       </div>
   </div>
   
@@ -57,6 +62,7 @@
   </div>
   
   <div *ngIf="viewMode === 'chart'" class="card">
-      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    <p-chart #chart type="line" [data]="data" [options]="options" class="small-chart"></p-chart>
   </div>
+  
 </div>

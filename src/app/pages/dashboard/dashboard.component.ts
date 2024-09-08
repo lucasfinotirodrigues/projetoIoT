@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../api.service';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
+import { UIChart } from 'primeng/chart'; // Importe o tipo UIChart
+import { Chart, Plugin } from 'chart.js'; // Importe o Chart.js e Plugin
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [DatePipe] // Adicione DatePipe ao providers
+  providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('chart') chart!: UIChart; // Capture a referência do gráfico
   channel: any;
   feeds: any[] = [];
   data: any;
   options: any;
-  viewMode: 'table' | 'chart' = 'table'; // Variável para controlar a visualização
+  viewMode: 'table' | 'chart' = 'table';
 
   constructor(private apiService: ApiService, private datePipe: DatePipe) {}
 
@@ -41,9 +44,9 @@ export class DashboardComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-    
+
     this.data = {
-      labels: this.feeds.map(feed => this.datePipe.transform(feed.created_at, 'dd/MM/yyyy HH:mm:ss')), // Formatação da data
+      labels: this.feeds.map(feed => this.datePipe.transform(feed.created_at, 'dd/MM/yyyy HH:mm:ss')),
       datasets: [
         {
           type: 'bar',
@@ -61,10 +64,9 @@ export class DashboardComponent implements OnInit {
           borderColor: 'white',
           borderWidth: 2
         }
-        // Outros datasets...
       ]
     };
-    
+
     this.options = {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
@@ -73,6 +75,9 @@ export class DashboardComponent implements OnInit {
           labels: {
             color: textColor
           }
+        },
+        background: { // Configuração do plugin de fundo
+          color: '#ffffff' // Cor branca para o fundo
         }
       },
       scales: {
@@ -96,6 +101,21 @@ export class DashboardComponent implements OnInit {
     };
   }
 
+  toggleView(view: 'table' | 'chart') {
+    this.viewMode = view;
+  }
+
+  downloadChartAsPng() {
+    if (this.chart && this.chart.chart) {
+      const chartInstance = this.chart.chart; // Obtenha a instância do gráfico
+      const base64Image = chartInstance.toBase64Image(); // Converta para Base64
+      const downloadLink = document.createElement('a');
+      downloadLink.href = base64Image;
+      downloadLink.download = 'chart.png'; // Nome do arquivo
+      downloadLink.click();
+    }
+  }
+
   exportToExcel(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.feeds, {
       header: ['field1', 'field2', 'created_at']
@@ -103,10 +123,7 @@ export class DashboardComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Feeds');
 
-    // Generate buffer
     const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-
-    // Create a blob and download it
     const data: Blob = new Blob([excelBuffer], { type: EXCEL_TYPE });
     const fileName: string = 'horta.xlsx';
     const downloadLink = document.createElement('a');
@@ -114,12 +131,21 @@ export class DashboardComponent implements OnInit {
     downloadLink.download = fileName;
     downloadLink.click();
   }
-
-  // Método para alternar a visualização
-  toggleView(view: 'table' | 'chart') {
-    this.viewMode = view;
-  }
 }
 
-// Constants for file types
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+
+// Plugin para adicionar fundo branco ao gráfico
+const whiteBackgroundPlugin: Plugin = {
+  id: 'whiteBackground',
+  beforeDraw: (chart) => {
+    const ctx = chart.ctx;
+    ctx.save();
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+// Registro do plugin globalmente
+Chart.register(whiteBackgroundPlugin);
