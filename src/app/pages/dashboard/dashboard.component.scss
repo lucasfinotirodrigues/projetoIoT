@@ -228,5 +228,36 @@ td {
 
 
 .card {
-  padding: 0 28px 28px;
+  padding: 0 298px 28px;
+}
+
+
+@media screen and (max-width: 1375px) and (min-width: 1275px) {
+  .card {
+    padding: 0 248px 28px;
+  }
+}
+
+@media screen and (max-width: 1275px) and (min-width: 1175px) {
+  .card {
+    padding: 0 180px 28px;
+  }
+}
+
+@media screen and (max-width: 1175px) and (min-width: 1075px) {
+  .card {
+    padding: 0 140px 28px;
+  }
+}
+
+@media screen and (max-width: 1075px) and (min-width: 992px) {
+  .card {
+    padding: 0 128px 28px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .card {
+    padding: 0 28px 28px;
+  }
 }
