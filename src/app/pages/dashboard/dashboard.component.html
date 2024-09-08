@@ -15,7 +15,7 @@
         <h3 class="green-a">{{ channel?.created_at | date: 'medium' }}</h3>
       </div>
       <div style="display: flex; gap: 8px">
-        <button style="display: flex;align-items: center; gap: 8px">
+        <button style="display: flex;align-items: center; gap: 8px" (click)="exportToExcel()">
           <img src="../../../assets/arrow-down.svg" alt="ícone download">
           Exportar Planilha
         </button>
