@@ -27,7 +27,6 @@
       </div>
   </div>
   
-  <!-- Input radios para alternar entre tabela e gráfico -->
   <div class="radio-buttons">
       <label>
           <input type="radio" name="view" value="table" [(ngModel)]="viewMode" (change)="toggleView('table')">
@@ -39,26 +38,25 @@
       </label>
   </div>
 
-  <!-- Condicional para mostrar a tabela ou gráfico com base na seleção -->
-  <div *ngIf="viewMode === 'table'" class="table-responsive">
-      <div class="table">
-          <table class="content-table">
-              <thead>
-                  <tr>
-                      <th>{{ channel?.field1 }}</th>
-                      <th>{{ channel?.field2 }}</th>
-                      <th>Data e hora</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let feed of feeds">
-                      <td>{{ feed.field1 }}%</td>
-                      <td>{{ feed.field2 || 0 }}%</td>
-                      <td>{{ feed.created_at  | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+  <div style="display: flex;justify-content: center;">
+    <div class="table-wrapper" *ngIf="viewMode === 'table'">
+      <table class="responsive-table">
+          <thead>
+              <tr>
+                  <th class="header-cell-one">{{ channel?.field1 }}</th>
+                  <th class="header-cell-two">{{ channel?.field2 }}</th>
+                  <th class="header-cell-three">Data e hora</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let feed of feeds">
+                <td class="data-cell">{{ feed.field1 }}%</td>
+                <td class="data-cell">{{ feed.field2 || 0 }}%</td>
+                <td class="data-cell">{{ feed.created_at  | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
   </div>
   
   <div *ngIf="viewMode === 'chart'" class="card">

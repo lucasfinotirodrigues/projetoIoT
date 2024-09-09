@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   // width: 100vw;
-  gap: 48px;
+  gap: 20px;
 
   .header-content {
     display: flex;
@@ -22,8 +22,6 @@
         width: 64px;
         height: 64px
       }
-
-      ;
 
       .text {
         display: flex;
@@ -191,6 +189,63 @@ td {
     }
   }
 }
+
+/* Estilos básicos da tabela */
+.table-wrapper {
+  overflow-x: auto; /* Permite rolagem horizontal quando necessário */
+  -webkit-overflow-scrolling: touch; /* Melhora a rolagem em dispositivos móveis */
+  border-radius: 4px;
+  margin: 20px;
+  width: 80%;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.header-cell-one, .header-cell-two, .header-cell-three {
+  background-color: var(--color-primary);
+  padding: 10px;
+  border: none;
+  text-align: left;
+}
+
+.header-cell-one {
+  border-radius: 12px 0 0px 0px;
+}
+
+.header-cell-three {
+  border-radius: 0 12px 0 0;
+
+}
+
+.data-cell {
+  padding: 10px;
+  text-align: left;
+}
+
+
+.responsive-table thead tr {
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  border:none
+}
+
+
+.responsive-table th,
+.responsive-table td {
+  padding: 12px 15px;
+  border: none;
+}
+
+.responsive-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
 
 
 // Responsividade
