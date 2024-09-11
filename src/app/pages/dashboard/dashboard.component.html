@@ -26,7 +26,7 @@
 
       </div>
   </div>
-  
+
   <div class="radio-buttons">
       <label>
           <input type="radio" name="view" value="table" [(ngModel)]="viewMode" (change)="toggleView('table')">
@@ -43,8 +43,9 @@
       <table class="responsive-table">
           <thead>
               <tr>
-                  <th class="header-cell-one">{{ channel?.field1 }}</th>
-                  <th class="header-cell-two">{{ channel?.field2 }}</th>
+                  <th class="header-cell-one">{{ channel?.field1 }} Do Ambiente</th>
+                  <th class="header-cell-two">{{ channel?.field2 }} Do Ambiente</th>
+                  <th class="header-cell-two">Temperatura do solo</th>
                   <th class="header-cell-three">Data e hora</th>
               </tr>
           </thead>
@@ -52,15 +53,16 @@
               <tr *ngFor="let feed of feeds">
                 <td class="data-cell">{{ feed.field1 }}%</td>
                 <td class="data-cell">{{ feed.field2 || 0 }}%</td>
+                <td class="data-cell">32%</td>
                 <td class="data-cell">{{ feed.created_at  | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
               </tr>
           </tbody>
       </table>
     </div>
   </div>
-  
+
   <div *ngIf="viewMode === 'chart'" class="card">
     <p-chart #chart type="line" [data]="data" [options]="options" class="small-chart"></p-chart>
   </div>
-  
+
 </div>
