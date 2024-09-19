@@ -11,7 +11,7 @@
   </div>
   <div class="header-content">
       <div style="display: flex;flex-direction: column; gap:8px">
-          <h2 class="green">{{ channel?.name }}</h2>
+          <h2 class="green">SmartAgroPET</h2>
           <h3 class="green-a">{{ channel?.created_at | date: 'dd/MM/yyyy HH:mm:ss' }}</h3>
       </div>
       <div style="display: flex; gap: 8px">
@@ -43,17 +43,20 @@
       <table class="responsive-table">
           <thead>
               <tr>
-                  <th class="header-cell-one">{{ channel?.field1 }} Do Ambiente</th>
-                  <th class="header-cell-two">{{ channel?.field2 }} Do Ambiente</th>
-                  <th class="header-cell-two">Temperatura do solo</th>
+                  <th class="header-cell-one">{{ channel?.field1 }}</th>
+                  <th class="header-cell-two">{{ channel?.field2 }}</th>
+                  <th class="header-cell-two">{{ channel?.field3 }}</th>
                   <th class="header-cell-three">Data e hora</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let feed of feeds">
-                <td class="data-cell">{{ feed.field1 }}%</td>
-                <td class="data-cell">{{ feed.field2 || 0 }}%</td>
-                <td class="data-cell">32%</td>
+                <td class="data-cell" *ngIf="feed.field1">{{ feed.field1 }}%</td>
+                <td class="data-cell" *ngIf="!feed.field1">-</td>
+                <td class="data-cell" *ngIf="feed.field2">{{ feed.field2 }}%</td>
+                <td class="data-cell" *ngIf="!feed.field2">-</td>
+                <td class="data-cell" *ngIf="feed.field3">{{ feed.field3 }}%</td>
+                <td class="data-cell" *ngIf="!feed.field3">-</td>
                 <td class="data-cell">{{ feed.created_at  | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
               </tr>
           </tbody>

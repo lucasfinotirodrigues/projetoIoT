@@ -44,29 +44,37 @@ export class DashboardComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
+  
     this.data = {
       labels: this.feeds.map(feed => this.datePipe.transform(feed.created_at, 'dd/MM/yyyy HH:mm:ss')),
       datasets: [
         {
           type: 'bar',
-          label: 'Temperatura',
+          label: 'Temperatura do Ar',
           backgroundColor: documentStyle.getPropertyValue('--green-500'),
           borderColor: 'white',
           borderWidth: 2,
-          data: this.feeds.map(feed => feed.field1)
+          data: this.feeds.map(feed => feed.field1) // Assume que field1 é a temperatura do ar
         },
         {
           type: 'bar',
-          label: 'Umidade',
+          label: 'Umidade do Ar',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: this.feeds.map(feed => feed.field2),
+          data: this.feeds.map(feed => feed.field2), // Assume que field2 é a umidade do ar
+          borderColor: 'white',
+          borderWidth: 2
+        },
+        {
+          type: 'bar',
+          label: 'Umidade do Solo',
+          backgroundColor: documentStyle.getPropertyValue('--yellow-500'), // Escolha uma cor para este gráfico
+          data: this.feeds.map(feed => feed.field3), // Assume que field3 é a umidade do solo
           borderColor: 'white',
           borderWidth: 2
         }
       ]
     };
-
+  
     this.options = {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
@@ -99,7 +107,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
-  }
+  }  
 
   toggleView(view: 'table' | 'chart') {
     this.viewMode = view;
@@ -118,14 +126,14 @@ export class DashboardComponent implements OnInit {
 
   exportToExcel(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.feeds, {
-      header: ['field1', 'field2', 'created_at']
+      header: ['field1', 'field2', 'field3','created_at']
     });
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Feeds');
 
     const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: EXCEL_TYPE });
-    const fileName: string = 'horta.xlsx';
+    const fileName: string = 'smartAgroPET.xlsx';
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(data);
     downloadLink.download = fileName;
