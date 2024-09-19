@@ -38,13 +38,6 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
 <div class="channel-info">
   <h2>Informações do Canal</h2>
   <p><strong>ID:</strong> {{ channel?.id }}</p>
@@ -53,6 +46,7 @@
   <p><strong>Longitude:</strong> {{ channel?.longitude }}</p>
   <p><strong>Campo 1:</strong> {{ channel?.field1 }}</p>
   <p><strong>Campo 2:</strong> {{ channel?.field2 }}</p>
+  <p><strong>Campo 3:</strong> {{ channel?.field3 }}</p>
   <p><strong>Criado em:</strong> {{ channel?.created_at | date: 'medium' }}</p>
   <p><strong>Atualizado em:</strong> {{ channel?.updated_at | date: 'medium' }}</p>
   <p><strong>Último ID de Entrada:</strong> {{ channel?.last_entry_id }}</p>
@@ -65,8 +59,9 @@
       <tr>
         <th>Data de Criação</th>
         <th>ID da Entrada</th>
-        <th>Campo 1 (Temperatura)</th>
-        <th>Campo 2 (Umidade)</th>
+        <th>Campo 1 Temperatura do ar</th>
+        <th>Campo 2 Umidade do ar</th>
+        <th>Campo 3 Umidade do solo</th>
       </tr>
     </thead>
     <tbody>
@@ -75,6 +70,7 @@
         <td>{{ feed.entry_id }}</td>
         <td>{{ feed.field1 }}</td>
         <td>{{ feed.field2 }}</td>
+        <td>{{ feed.field3 }}</td>
       </tr>
     </tbody>
   </table>
