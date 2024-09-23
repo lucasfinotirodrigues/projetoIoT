@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'https://api.thingspeak.com/channels/2141966/feeds.json?api_key=EX1VAR2WW3758ER4&results=2';
+  private apiUrl = 'https://api.thingspeak.com/channels/2141966/feeds.json?api_key=EX1VAR2WW3758ER4&results=15';
 
   constructor(private http: HttpClient) {}
 
