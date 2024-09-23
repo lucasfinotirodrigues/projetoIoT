@@ -71,7 +71,7 @@
     flex-direction: column;
     gap: 24px;
 
-   
+
     table {
       border-collapse: collapse;
       width: 702px;
@@ -184,7 +184,7 @@ td {
     color: #333;
 
     input[type="radio"] {
-      accent-color: #589c32; 
+      accent-color: #589c32;
       margin-right: 8px;
     }
   }
@@ -208,6 +208,7 @@ td {
 
 .header-cell-one, .header-cell-two, .header-cell-three {
   background-color: var(--color-primary);
+  text-transform: capitalize;
   padding: 10px;
   border: none;
   text-align: left;

@@ -44,37 +44,37 @@ export class DashboardComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-  
+
     this.data = {
       labels: this.feeds.map(feed => this.datePipe.transform(feed.created_at, 'dd/MM/yyyy HH:mm:ss')),
       datasets: [
         {
           type: 'bar',
-          label: 'Temperatura do Ar',
+          label: 'Temperatura do ar',
           backgroundColor: documentStyle.getPropertyValue('--green-500'),
           borderColor: 'white',
           borderWidth: 2,
-          data: this.feeds.map(feed => feed.field1) // Assume que field1 é a temperatura do ar
+          data: this.feeds.map(feed => feed.field1)
         },
         {
           type: 'bar',
-          label: 'Umidade do Ar',
+          label: 'Umidade do ar',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: this.feeds.map(feed => feed.field2), // Assume que field2 é a umidade do ar
+          data: this.feeds.map(feed => feed.field2),
           borderColor: 'white',
           borderWidth: 2
         },
         {
           type: 'bar',
-          label: 'Umidade do Solo',
-          backgroundColor: documentStyle.getPropertyValue('--yellow-500'), // Escolha uma cor para este gráfico
-          data: this.feeds.map(feed => feed.field3), // Assume que field3 é a umidade do solo
+          label: 'Umidade do solo',
+          backgroundColor: documentStyle.getPropertyValue('--orange-500'),
           borderColor: 'white',
+          data: this.feeds.map(feed => feed.field3),
           borderWidth: 2
         }
       ]
     };
-  
+
     this.options = {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
-  }  
+  }
 
   toggleView(view: 'table' | 'chart') {
     this.viewMode = view;
