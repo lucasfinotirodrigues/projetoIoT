@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
       (data) => {
         console.warn('Dados da API:', data);
         this.channel = data.channel;
-        this.feeds = data.feeds;
+        this.feeds = data.feeds.reverse();
         this.updateChartData();
       },
       (error) => {
