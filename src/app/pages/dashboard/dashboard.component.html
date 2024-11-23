@@ -46,18 +46,21 @@
                   <th class="header-cell-one">{{ channel?.field1 }}</th>
                   <th class="header-cell-two">{{ channel?.field2 }}</th>
                   <th class="header-cell-two">{{ channel?.field3 }}</th>
-                  <th class="header-cell-three">Data e hora</th>
+                  <th class="header-cell-two">Data e hora</th>
+                  <th class="header-cell-three">Status da bomba</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let feed of feeds">
                 <td class="data-cell" *ngIf="feed.field1">{{ feed.field1 }}%</td>
-                <td class="data-cell" *ngIf="!feed.field1">-</td>
+                <!-- <td class="data-cell" *ngIf="!feed.field1">-</td> -->
                 <td class="data-cell" *ngIf="feed.field2">{{ feed.field2 }}%</td>
-                <td class="data-cell" *ngIf="!feed.field2">-</td>
+                <!-- <td class="data-cell" *ngIf="!feed.field2">-</td> -->
                 <td class="data-cell" *ngIf="feed.field3">{{ feed.field3 }}%</td>
-                <td class="data-cell" *ngIf="!feed.field3">-</td>
+                <!-- <td class="data-cell" *ngIf="!feed.field3">-</td> -->
                 <td class="data-cell">{{ feed.created_at  | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                <td class="data-cell" *ngIf="feed.field4 == 1">Ativo</td>
+                <td class="data-cell" *ngIf="feed.field4 == 0">Inativo</td>
               </tr>
           </tbody>
       </table>
