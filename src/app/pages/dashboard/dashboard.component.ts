@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   constructor(private apiService: ApiService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    this.getAPI(); // Chama imediatamente ao inicializar
     setInterval(() => {
       this.getAPI();
     }, 10000); // 10000 milissegundos = 10 segundos
