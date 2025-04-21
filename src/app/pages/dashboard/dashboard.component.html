@@ -27,6 +27,18 @@
       </div>
   </div>
 
+
+  <div class="button-container">
+    <button pButton
+            label="Analisar Irrigação"
+            icon="pi pi-chart-line"
+            class="analysis-button"
+            (click)="analyzeIrrigation()">
+            <img src="../../../assets/data.svg" alt="ícone download">
+            Analisar regressão
+    </button>
+  </div>
+
   <div class="radio-buttons">
       <label>
           <input type="radio" name="view" value="table" [(ngModel)]="viewMode" (change)="toggleView('table')">
@@ -70,7 +82,6 @@
   <div *ngIf="viewMode === 'chart'" class="card">
     <p-chart #chart type="line" [data]="data" [options]="options" class="small-chart"></p-chart>
   </div>
-
 </div>
 
 
