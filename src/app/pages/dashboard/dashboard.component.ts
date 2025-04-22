@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../services/api.service';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
 import { UIChart } from 'primeng/chart'; // Importe o tipo UIChart
 import { Chart, Plugin } from 'chart.js'; // Importe o Chart.js e Plugin
+import { AnalysisResult } from 'src/app/interface/IAnalysisResult.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +19,17 @@ export class DashboardComponent implements OnInit {
   data: any;
   options: any;
   viewMode: 'table' | 'chart' = 'table';
+  mostrarToast = false;
+  loadingAnalysis = false;
+  analysisResults?: AnalysisResult;
+  momentoMaiorQueda!: string;
+  precisaoPredicao!: number;
+  quedaUmidadeSegundo!: number;
+  umidadeAtual!: number;
 
-  constructor(private apiService: ApiService, private datePipe: DatePipe) {}
+  constructor(
+    private apiService: ApiService,
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getAPI(); // Chama imediatamente ao inicializar
@@ -28,11 +38,24 @@ export class DashboardComponent implements OnInit {
     }, 10000); // 10000 milissegundos = 10 segundos
   }
 
+  getDadosXlsx(): void {
+    this.apiService.getTestIrrigationData().subscribe((dados: AnalysisResult) => {
+      this.momentoMaiorQueda = dados.momento_maior_queda;
+      this.precisaoPredicao = dados.precisao_da_predicao;
+      this.quedaUmidadeSegundo = dados.queda_umidade_por_segundo;
+      this.umidadeAtual = dados.umidade_atual;
+      // Exibe o toast por 5 segundos
+      this.mostrarToast = true;
+      setTimeout(() => {
+        this.mostrarToast = false;
+      }, 5000);
+    });
+  }
 
   getAPI() {
     this.apiService.getAPI().subscribe(
       (data) => {
-        console.warn('Dados da API:', data);
+        // console.warn('Dados da API:', data);
         this.channel = data.channel;
         this.feeds = data.feeds.reverse();
         this.updateChartData();

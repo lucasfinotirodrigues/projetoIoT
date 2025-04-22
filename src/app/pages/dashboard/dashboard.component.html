@@ -33,11 +33,26 @@
             label="Analisar Irrigação"
             icon="pi pi-chart-line"
             class="analysis-button"
-            (click)="analyzeIrrigation()">
+            (click)="getDadosXlsx()"
+            >
             <img src="../../../assets/data.svg" alt="ícone download">
             Analisar regressão
     </button>
   </div>
+
+ <div class="toast toast-success" *ngIf="mostrarToast">
+  <div class="toast-header">
+    <span class="toast-icon">✔</span>
+    <span class="toast-title">Análise de regressão concluída com sucesso</span>
+  </div>
+  <div class="toast-body">
+    <p><strong>Umidade atual:</strong> {{ umidadeAtual }}%</p>
+    <p><strong>Momento de maior queda <br>nas últimas 24 horas:</strong> {{ momentoMaiorQueda | date: 'HH:mm:ss'}}</p>
+    <p><strong>Queda de umidade por segundo:</strong> {{ quedaUmidadeSegundo | number:'1.2-4' }}</p>
+    <p><strong>Precisão da predição:</strong> {{ precisaoPredicao * 100 | number:'1.1-2' }}%</p>
+  </div>
+</div>
+
 
   <div class="radio-buttons">
       <label>
