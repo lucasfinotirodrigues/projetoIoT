@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AnalysisResult } from '../interface/IAnalysisResult.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,5 +13,9 @@ export class ApiService {
 
   getAPI(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
+  }
+
+  getTestIrrigationData(): Observable<AnalysisResult> {
+    return this.http.get<AnalysisResult>('http://localhost:5000/test');
   }
 }
